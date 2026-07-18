@@ -5,6 +5,8 @@ import connectDb from "./db/index.ts";
 import userRoutes from "./routes/userRoutes.ts";   // now express knows about the user endpoints
 import { errorHandler } from "./middleware/errorHandler.ts";
 
+import productRoutes from "./routes/productRoutes.ts";
+
 const app = express();
 
 const PORT = process.env.PORT || 8080;
@@ -21,6 +23,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", userRoutes);
+app.use("/api/products", productRoutes);
 
 // Keep this LAST
 app.use(errorHandler);
