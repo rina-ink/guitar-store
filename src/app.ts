@@ -7,6 +7,8 @@ import { errorHandler } from "./middleware/errorHandler.ts";
 
 import productRoutes from "./routes/productRoutes.ts";
 
+import categoryRoutes from "./routes/categoryRoutes.ts";
+
 const app = express();
 
 const PORT = process.env.PORT || 8080;
@@ -24,6 +26,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/categories", categoryRoutes);
 
 // Keep this LAST
 app.use(errorHandler);
