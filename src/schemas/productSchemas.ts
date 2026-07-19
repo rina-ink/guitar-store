@@ -4,7 +4,8 @@ export const productInputSchema = z.strictObject({
     name: z.string().trim().min(2),
     description: z.string().trim().min(1),
     brand: z.string().trim().min(1),
-    category: z.string().trim().min(1),
+    // category: z.string().trim().min(1),
+    category: z.string().regex(/^[0-9a-fA-F]{24}$/, "Invalid category ID"),   // the value has the shape of a MongoDB ObjectId
     price: z.number().min(0),
     stock: z.number().int().min(0),   // must be a whole number, no decimals
     imageUrl: z.url().optional(),
