@@ -22,7 +22,9 @@ const productSchema = new Schema(
         },
 
         category: {
-            type: String,
+            // type: String,
+            type: Schema.Types.ObjectId,   // this tells Mongoose: store a MongoDB document ID here
+            ref: "Category",   // that ID belongs to the Category collection
             required: [true, "Category is required"],
             trim: true,
         },
@@ -54,3 +56,14 @@ const productSchema = new Schema(
 );
 
 export default model("Product", productSchema);
+
+
+/* What establishes the relationship?
+type: Schema.Types.ObjectId
+The product stores a MongoDB document ID.
+
+ref: "Category"
+That ID is expected to refer to a document from the Category model. 
+
+type: Schema.Types.ObjectId, unique identifier, represents a reference to another document
+ref: "Category", this ObjectId belongs to the category model */

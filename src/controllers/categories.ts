@@ -1,6 +1,7 @@
 import type { RequestHandler } from "express";
 import Category from "../models/Category.ts";
 import type { CategoryInput } from "../schemas/categorySchemas.ts";
+import Product from "../models/Product.ts";
 
 export const getCategories: RequestHandler = async (_req, res, next) => {
     try {
@@ -93,13 +94,26 @@ export const deleteCategory: RequestHandler = async (req, res, next) => {
     try {
         const { id } = req.params;
 
-        const category = await Category.findByIdAndDelete(id);
+        const category = await Category.findById(id);
 
         if (!category) {
             return res.status(404).json({
                 message: "Category not found",
             });
         }
+
+        const categoryIsInUse = await Product.exists({
+            category: id,
+        });
+
+        if (categoryIsInUse) {
+            return res.status(409).json({
+                message:
+                    "Category cannot be deleted because it is assigned to one or more products",
+            });
+        }
+
+        await category.deleteOne();
 
         res.status(200).json({
             message: "Category deleted successfully",
@@ -110,5 +124,40 @@ export const deleteCategory: RequestHandler = async (req, res, next) => {
 };
 
 
-/* The category controller first checks for duplicates.
-This makes sense because category names are usually expected to be unique. */
+/* The category controller prevents duplicate category names.
+
+Before deleting a category, it also checks whether any products still reference it. 
+A category that is currently in use cannot be deleted.
+
+
+.
+
+
+Prevent deleting a category if one or more products still reference it.
+
+
+.
+
+
+previous version:
+
+const productUsingCategory = await Product.findOne({
+            category: id,
+        });
+
+        if (productUsingCategory) {
+            return res.status(409).json({
+                message:
+                    "Category cannot be deleted because it is assigned to one or more products",
+            });
+        }
+
+
+.
+
+
+400 bad request - invalid input (caught by Zod)
+404 category not found - valid ObjectId format, but the referenced category doesn't exist
+409 conflict - category exists, but it cannot be deleted because products reference it
+
+*/
