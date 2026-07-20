@@ -9,7 +9,7 @@ export const getCategories: RequestHandler = async (_req, res, next) => {
 
         res.status(200).json(categories);   // sends the categories to the client as JSON
     } catch (error: unknown) {
-        next(error);   // if the database operation fails, the error is passed to your centralized error middleware
+        next(error);   // if the database operation fails, the error is passed to the centralized error middleware
     }
 };
 

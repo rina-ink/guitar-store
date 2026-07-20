@@ -157,3 +157,9 @@ npm install -D typescript @types/node @types/express @types/cors
 ```bash
 npm run dev
 ```
+#### 1.8. deployment
+
+```bash
+npm run build
+npm start
+```
