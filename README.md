@@ -73,7 +73,6 @@ guitar-store/
 ├── tsconfig.json
 └── README.md
 ```
----
 
 ### API endpoints
 (e.g. products)
@@ -84,7 +83,6 @@ POST /api/products
 PUT /api/products/:id
 DELETE /api/products/:id
 ```
----
 
 ### Categories
 ```
@@ -99,19 +97,19 @@ DELETE /api/products/:id
 
 ### **Design decisions**
 
-### - guest checkout
+#### - guest checkout
 
 Orders store customer information instead of requiring user registration.
 
-### - historical prices
+#### - historical prices
 
 Each order stores the product price at the time of purchase.
 
-### - inventory management
+#### - inventory management
 
 Stock is reduced automatically after a successful order.
 
-### - transactions
+#### - transactions
 
 Order creation and stock updates run inside a MongoDB transaction to guarantee consistency.
 
