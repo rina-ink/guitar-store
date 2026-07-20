@@ -4,6 +4,119 @@ Backend eCommerce API built with **Express**, **TypeScript**, **MongoDB**, **Mon
 
 ---
 
+### Features
+
+- Product management
+- Category management
+- Guest checkout
+- Order management
+- Stock management
+- MongoDB transactions
+- Request validation with Zod
+- Centralized error handling
+
+---
+
+### Tech Stack
+
+- TypeScript
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- Zod
+
+---
+
+### Project structure
+
+```text
+guitar-store/
+├── src/
+│   ├── controllers/
+│   │   ├── categories.ts
+│   │   ├── orders.ts
+│   │   ├── products.ts
+│   │   └── users.ts
+│   │
+│   ├── db/
+│   │   └── index.ts
+│   │
+│   ├── middleware/
+│   │   ├── errorHandler.ts
+│   │   └── validateBody.ts
+│   │
+│   ├── models/
+│   │   ├── Category.ts
+│   │   ├── Order.ts
+│   │   ├── Product.ts
+│   │   └── User.ts
+│   │
+│   ├── routes/
+│   │   ├── categoryRoutes.ts
+│   │   ├── orderRoutes.ts
+│   │   ├── productRoutes.ts
+│   │   └── userRoutes.ts
+│   │
+│   ├── schemas/
+│   │   ├── categorySchemas.ts
+│   │   ├── orderSchemas.ts
+│   │   ├── productSchemas.ts
+│   │   └── userSchemas.ts
+│   │
+│   └── app.ts
+│
+├── .env
+├── .gitignore
+├── package.json
+├── package-lock.json
+├── tsconfig.json
+└── README.md
+```
+---
+
+### API endpoints
+(e.g. products)
+```
+GET /api/products
+GET /api/products/:id
+POST /api/products
+PUT /api/products/:id
+DELETE /api/products/:id
+```
+---
+
+### Categories
+```
+- electric guitar
+- bass guitar
+- acoustic guitar
+- amplifier
+- pedal
+- strap
+```
+---
+
+### **Design decisions**
+
+### - guest checkout
+
+Orders store customer information instead of requiring user registration.
+
+### - historical prices
+
+Each order stores the product price at the time of purchase.
+
+### - inventory management
+
+Stock is reduced automatically after a successful order.
+
+### - transactions
+
+Order creation and stock updates run inside a MongoDB transaction to guarantee consistency.
+
+---
+
 ### Project Setup
 
 #### 1.1. create the project
