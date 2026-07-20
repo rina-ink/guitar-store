@@ -73,7 +73,6 @@ guitar-store/
 ├── tsconfig.json
 └── README.md
 ```
----
 
 ### API endpoints
 (e.g. products)
@@ -84,7 +83,6 @@ POST /api/products
 PUT /api/products/:id
 DELETE /api/products/:id
 ```
----
 
 ### Categories
 ```
