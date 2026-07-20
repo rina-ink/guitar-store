@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node --watch --env-file=.env src/app.ts",
     "build": "tsc",
-    "start": "node dist/app.js"
+    "start": "node dist/app.js",
+    "start:local": "node --env-file=.env dist/app.js"
   },
   "keywords": [],
   "author": "",

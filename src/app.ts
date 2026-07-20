@@ -15,7 +15,7 @@ const app = express();
 
 const PORT = process.env.PORT || 8080;
 
-connectDb();
+await connectDb();
 
 // middleware
 app.use(express.json());  
