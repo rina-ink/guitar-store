@@ -74,6 +74,48 @@ guitar-store/
 └── README.md
 ```
 
+| folder | purpose |
+|---------|----------|
+| **controllers** | Implements the business logic for each endpoint. |
+| **db** | Connects the application to MongoDB. |
+| **middleware** | Contains reusable Express middleware such as request validation and centralized error handling. |
+| **models** | Defines the MongoDB collections using Mongoose schemas. |
+| **routes** | Maps API endpoints to their corresponding controllers. |
+| **schemas** | Validates incoming request bodies using Zod before they reach the controllers. |
+
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "background": "#0d1117",
+    "primaryColor": "#202020",
+    "primaryTextColor": "#d6d6d6",
+    "primaryBorderColor": "#555555",
+    "lineColor": "#666666",
+    "fontFamily": "Arial, sans-serif"
+  }
+}}%%
+
+flowchart TD
+
+    A["Client<br/>Postman"]
+    B["Routes"]
+    C["validateBody<br/>Zod"]
+    D["Controllers"]
+    E["Mongoose Models"]
+    F[("MongoDB")]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+
+    classDef darkNode fill:#202020,color:#d6d6d6,stroke:#555555,stroke-width:1px;
+    class A,B,C,D,E,F darkNode;
+```
+
 ### API endpoints
 (e.g. products)
 ```
